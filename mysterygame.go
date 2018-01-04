@@ -3,6 +3,7 @@ package main
 import (
 	"html/template"
 	"net/http"
+	"os"
 )
 
 func handler(writer http.ResponseWriter, request *http.Request) {
@@ -16,6 +17,8 @@ func handler(writer http.ResponseWriter, request *http.Request) {
 }
 
 func main() {
+	addr := os.Getenv("APP_ADDR")
+
 	http.HandleFunc("/", handler)
-	http.ListenAndServe(":80", nil)
+	http.ListenAndServe(addr, nil)
 }
